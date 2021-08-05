@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Microsoft.ML;
+using Microsoft.ML.Data;
 using TreinaModeloIris.Classses;
 
 namespace TreinaModeloIris
@@ -25,6 +26,15 @@ namespace TreinaModeloIris
             var mlContext = new MLContext(seed: 1234);
             var dataView = mlContext.Data.LoadFromTextFile<IrisData>(_dataPath, hasHeader: true);
             var spitData = mlContext.MulticlassClassification.TrainTestSplit(dataView, testFraction: 0.25);
+
+            // Segunda etapa: transformação dos dados
+            var dataProcessPipeline = mlContext.Transforms.Concatenate(
+                DefaultColumnNames.Features,
+                nameof(IrisData.SepalWidth),
+                nameof(IrisData.SepalLength),
+                nameof(IrisData.PetalWidth),
+                nameof(IrisData.PetalLength)
+            ).AppendCacheCheckpoint(mlContext);
 
             Console.WriteLine("Finalizando programa");
             Console.ReadKey();
