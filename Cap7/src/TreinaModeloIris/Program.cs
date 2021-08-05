@@ -36,6 +36,11 @@ namespace TreinaModeloIris
                 nameof(IrisData.PetalLength)
             ).AppendCacheCheckpoint(mlContext);
 
+            // terceira etapa: Treinamento de um modelo de Machine Learning
+            var trainer = mlContext.MulticlassClassification
+                .Trainers
+                .LogisticRegression(labelColumnName: "Label", featureColumnName: DefaultColumnNames.Features);
+
             Console.WriteLine("Finalizando programa");
             Console.ReadKey();
         }
