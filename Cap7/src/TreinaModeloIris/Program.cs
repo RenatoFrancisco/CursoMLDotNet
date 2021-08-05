@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using Microsoft.ML;
@@ -25,7 +26,7 @@ namespace TreinaModeloIris
 
             var mlContext = new MLContext(seed: 1234);
             var dataView = mlContext.Data.LoadFromTextFile<IrisData>(_dataPath, hasHeader: true);
-            var spitData = mlContext.MulticlassClassification.TrainTestSplit(dataView, testFraction: 0.25);
+            var splitData = mlContext.MulticlassClassification.TrainTestSplit(dataView, testFraction: 0.25);
 
             // Segunda etapa: transformação dos dados
             var dataProcessPipeline = mlContext.Transforms.Concatenate(
@@ -34,15 +35,35 @@ namespace TreinaModeloIris
                 nameof(IrisData.SepalLength),
                 nameof(IrisData.PetalWidth),
                 nameof(IrisData.PetalLength)
-            ).AppendCacheCheckpoint(mlContext);
+            )
+            .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: DefaultColumnNames.Label, inputColumnName: nameof(IrisData.Label)))
+            .AppendCacheCheckpoint(mlContext);
 
-            // terceira etapa: Treinamento de um modelo de Machine Learning
+            // Terceira etapa: Treinamento de um modelo de Machine Learning
             var trainer = mlContext.MulticlassClassification
                 .Trainers
                 .LogisticRegression(labelColumnName: "Label", featureColumnName: DefaultColumnNames.Features);
 
+            var watch = Stopwatch.StartNew();
+
+            var trainingPipeline = dataProcessPipeline.Append(trainer);
+            var trainingModel = trainingPipeline.Fit(splitData.TrainSet);
+
+            watch.Stop();
+
+            Console.WriteLine($"{watch.ElapsedMilliseconds / 1000} segundos");
+
+            // Quarta etapa: Avaliação do Modelo
+            var predictions = trainingModel.Transform(splitData.TestSet);
+            var metrics = mlContext.MulticlassClassification.Evaluate(predictions, DefaultColumnNames.Label, DefaultColumnNames.Score);
+
+            Console.WriteLine($"Acurácia: {metrics.AccuracyMacro}"); // 0 a 1, quanto maior -> melhor
+            Console.WriteLine($"LogLoss: {metrics.LogLoss}"); // 0 a 1, quanto menor -> melhor
+            Console.WriteLine($"LogLoss para classe 1: {metrics.PerClassLogLoss[0]}");
+            Console.WriteLine($"LogLoss para classe 2: {metrics.PerClassLogLoss[1]}");
+            Console.WriteLine($"LogLoss para classe 3: {metrics.PerClassLogLoss[2]}");
+
             Console.WriteLine("Finalizando programa");
-            Console.ReadKey();
         }
     }
 }

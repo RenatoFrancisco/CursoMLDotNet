@@ -2,6 +2,6 @@ namespace TreinaModeloIris.Classses
 {
     public class IrisPrediction
     {
-        public float[] Socore { get; set; }
+        public float[] Score { get; set; }
     }
 }
