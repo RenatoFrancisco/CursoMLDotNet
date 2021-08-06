@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.ML;
 using Microsoft.ML.Data;
-using TreinaModeloIris.Classses;
+using TreinaModeloIris.Classes;
 
 namespace TreinaModeloIris
 {

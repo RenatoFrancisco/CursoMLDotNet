@@ -1,4 +1,4 @@
-namespace TreinaModeloIris.Classses
+namespace TreinaModeloIris.Classes
 {
     public class IrisPrediction
     {

@@ -14,5 +14,9 @@
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\TreinaModeloIris\TreinaModeloIris.csproj" />
+  </ItemGroup>
 
 </Project>

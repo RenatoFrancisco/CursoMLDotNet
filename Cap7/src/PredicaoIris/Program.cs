@@ -2,6 +2,7 @@
 using System.IO;
 using Microsoft.ML;
 using System.Reflection;
+using TreinaModeloIris.Classes;
 
 namespace PredicaoIris
 {
@@ -13,6 +14,8 @@ namespace PredicaoIris
         private static readonly MLContext _mlContext = new MLContext();
 
         private static ITransformer _trainedModel;
+
+        private static PredictionEngine<IrisData, IrisPrediction> _predictionEngine;
 
         static void Main(string[] args)
         {

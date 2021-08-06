@@ -1,7 +1,6 @@
 using Microsoft.ML.Data;
-using System;
 
-namespace TreinaModeloIris.Classses
+namespace TreinaModeloIris.Classes
 {
     public class IrisData
     {
