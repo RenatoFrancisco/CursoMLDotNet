@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{07D11802-B84
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreinaModeloIris", "src\TreinaModeloIris\TreinaModeloIris.csproj", "{FA8E23B2-9771-4F7F-A49F-699DAF1A96F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PredicaoIris", "src\PredicaoIris\PredicaoIris.csproj", "{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +34,21 @@ Global
 		{FA8E23B2-9771-4F7F-A49F-699DAF1A96F7}.Release|x64.Build.0 = Release|Any CPU
 		{FA8E23B2-9771-4F7F-A49F-699DAF1A96F7}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA8E23B2-9771-4F7F-A49F-699DAF1A96F7}.Release|x86.Build.0 = Release|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Debug|x64.Build.0 = Debug|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Debug|x86.Build.0 = Debug|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Release|x64.ActiveCfg = Release|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Release|x64.Build.0 = Release|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Release|x86.ActiveCfg = Release|Any CPU
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FA8E23B2-9771-4F7F-A49F-699DAF1A96F7} = {07D11802-B84B-4880-A062-C313FDD81F79}
+		{17D846EC-57A4-4ECD-983B-98D9E3D11AEB} = {07D11802-B84B-4880-A062-C313FDD81F79}
 	EndGlobalSection
 EndGlobal

@@ -11,6 +11,7 @@ namespace TreinaModeloIris
     class Program
     {
         private static readonly string _dataPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Dados", "iris-full.txt");
+        private static readonly string _modelPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Modelo.tar");
 
         static void Main(string[] args)
         {
@@ -47,14 +48,14 @@ namespace TreinaModeloIris
             var watch = Stopwatch.StartNew();
 
             var trainingPipeline = dataProcessPipeline.Append(trainer);
-            var trainingModel = trainingPipeline.Fit(splitData.TrainSet);
+            var trainedModel = trainingPipeline.Fit(splitData.TrainSet);
 
             watch.Stop();
 
             Console.WriteLine($"{watch.ElapsedMilliseconds / 1000} segundos");
 
             // Quarta etapa: Avaliação do Modelo
-            var predictions = trainingModel.Transform(splitData.TestSet);
+            var predictions = trainedModel.Transform(splitData.TestSet);
             var metrics = mlContext.MulticlassClassification.Evaluate(predictions, DefaultColumnNames.Label, DefaultColumnNames.Score);
 
             Console.WriteLine($"Acurácia: {metrics.AccuracyMacro}"); // 0 a 1, quanto maior -> melhor
@@ -62,6 +63,11 @@ namespace TreinaModeloIris
             Console.WriteLine($"LogLoss para classe 1: {metrics.PerClassLogLoss[0]}");
             Console.WriteLine($"LogLoss para classe 2: {metrics.PerClassLogLoss[1]}");
             Console.WriteLine($"LogLoss para classe 3: {metrics.PerClassLogLoss[2]}");
+
+            // Quinta etapa: Serializando o modelo (salvando o modelo em um arquivo)
+            using var fs = new FileStream(_modelPath, FileMode.Create, FileAccess.Write, FileShare.Write);
+            mlContext.Model.Save(trainedModel, fs);
+            Console.WriteLine($"Modelo salvo em: {_modelPath}");
 
             Console.WriteLine("Finalizando programa");
         }

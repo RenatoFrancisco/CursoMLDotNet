@@ -8,4 +8,14 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ML" Version="0.11.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dados\"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Dados\iris-full.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>
