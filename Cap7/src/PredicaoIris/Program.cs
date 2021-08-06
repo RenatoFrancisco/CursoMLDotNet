@@ -20,6 +20,12 @@ namespace PredicaoIris
         static void Main(string[] args)
         {
             Console.WriteLine("Iniciando programa");
+
+            var sepalaLength = 5.5f;
+            var sepalaWidth = 2.4f;
+            var petalLength = 3.7f;
+            var petalWidth = 1.0f;
+
             Load();
             Console.WriteLine("Finalizando programa");
         }
