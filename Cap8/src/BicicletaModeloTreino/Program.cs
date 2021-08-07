@@ -44,6 +44,20 @@ namespace BicicletaModeloTreino
                 nameof(BikeHoraInstancia.Humidity),
                 nameof(BikeHoraInstancia.Windspeed)
             ).AppendCacheCheckpoint(_mlContext);
+
+            (string nome, IEstimator<ITransformer> algoritmo)[] algoritmosRegressao =
+            {
+                ("FastTree", _mlContext.Regression.Trainers.FastTree()),
+                ("SDCA", _mlContext.Regression.Trainers.StochasticDualCoordinateAscent() )
+            };
+
+            foreach (var item in algoritmosRegressao)
+            {
+                var pipelineTreinamento = pipelineProcessamento.Append(item.algoritmo);
+                var modeloTreinado = pipelineProcessamento.Fit(treinoDataView);
+            }
+
+            Console.WriteLine("Programa finalizado");
         }
     }
 }
