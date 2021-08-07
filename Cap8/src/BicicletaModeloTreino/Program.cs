@@ -57,12 +57,17 @@ namespace BicicletaModeloTreino
                 var pipelineTreinamento = pipelineProcessamento.Append(item.algoritmo);
                 var modeloTreinado = pipelineProcessamento.Fit(treinoDataView);
                 
+                var predicoes = modeloTreinado.Transform(testeDataView);
+                var metricas = _mlContext.Regression.Evaluate(
+                    data: predicoes, 
+                    label: DefaultColumnNames.Label,
+                    score: DefaultColumnNames.Score);
+
                 using var fs = new FileStream(
                     Path.Combine(modelosPath, $"{item.nome}.tar"),
                     FileMode.Create,
                     FileAccess.Write,
-                    FileShare.Write
-                );
+                    FileShare.Write);
 
                 _mlContext.Model.Save(modeloTreinado, fs);
                 Console.WriteLine($"Modelo {item.nome} salvo em {Path.Combine(modelosPath, $"{item.nome}.tar")}");
