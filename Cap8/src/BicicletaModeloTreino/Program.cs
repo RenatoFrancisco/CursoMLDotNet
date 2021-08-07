@@ -1,7 +1,9 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
-using  Microsoft.ML;
+using Microsoft.ML;
+using BicicletaDemandaTreino.Classes;
+
 namespace BicicletaModeloTreino
 {
     class Program
@@ -23,6 +25,8 @@ namespace BicicletaModeloTreino
             }
 
             _mlContext = new MLContext(seed: 34);
+            var treinoDataView = _mlContext.Data.LoadFromTextFile<BikeHoraInstancia>(_dadosTreinoPath, separatorChar: ',', hasHeader: true);
+            var testeDataView = _mlContext.Data.LoadFromTextFile<BikeHoraInstancia>(_dadosTestePath, separatorChar: ',', hasHeader: true);
         }
     }
 }
