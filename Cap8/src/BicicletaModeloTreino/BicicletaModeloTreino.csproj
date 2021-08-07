@@ -9,4 +9,16 @@
     <PackageReference Include="Microsoft.ML" Version="0.11.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Dados\demanda_bike_hora_teste.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Dados\demanda_bike_hora_treino.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
