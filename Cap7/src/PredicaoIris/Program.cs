@@ -21,12 +21,27 @@ namespace PredicaoIris
         {
             Console.WriteLine("Iniciando programa");
 
-            var sepalaLength = 5.5f;
-            var sepalaWidth = 2.4f;
-            var petalLength = 3.7f;
-            var petalWidth = 1.0f;
-
             Load();
+
+            var sepalLength = 4.7f;
+            var sepalWidth = 3.2f;
+            var petalLength = 1.3f;
+            var petalWidth = 0.2f;
+
+            var amostra = new IrisData
+            {
+                SepalLength = sepalLength,
+                SepalWidth = sepalWidth,
+                PetalLength = petalLength,
+                PetalWidth = petalWidth
+            };
+
+            var result = _predictionEngine.Predict(amostra);
+
+            Console.WriteLine($"Prob. Classe 0: {result.Score[0]}");
+            Console.WriteLine($"Prob. Classe 1: {result.Score[1]}");
+            Console.WriteLine($"Prob. Classe 2: {result.Score[2]}");
+
             Console.WriteLine("Finalizando programa");
         }
 
@@ -34,6 +49,7 @@ namespace PredicaoIris
         {
             using var fs = new FileStream(_modelPath, FileMode.Open, FileAccess.Read, FileShare.Read);
             _trainedModel = _mlContext.Model.Load(fs);
+            _predictionEngine = _trainedModel.CreatePredictionEngine<IrisData, IrisPrediction>(_mlContext);
         }
     }
 }
