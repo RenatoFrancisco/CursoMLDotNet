@@ -48,13 +48,24 @@ namespace BicicletaModeloTreino
             (string nome, IEstimator<ITransformer> algoritmo)[] algoritmosRegressao =
             {
                 ("FastTree", _mlContext.Regression.Trainers.FastTree()),
-                ("SDCA", _mlContext.Regression.Trainers.StochasticDualCoordinateAscent() )
+                ("SDCA", _mlContext.Regression.Trainers.StochasticDualCoordinateAscent())
             };
 
+            var modelosPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "Modelos");
             foreach (var item in algoritmosRegressao)
             {
                 var pipelineTreinamento = pipelineProcessamento.Append(item.algoritmo);
                 var modeloTreinado = pipelineProcessamento.Fit(treinoDataView);
+                
+                using var fs = new FileStream(
+                    Path.Combine(modelosPath, $"{item.nome}.tar"),
+                    FileMode.Create,
+                    FileAccess.Write,
+                    FileShare.Write
+                );
+
+                _mlContext.Model.Save(modeloTreinado, fs);
+                Console.WriteLine($"Modelo {item.nome} salvo em {Path.Combine(modelosPath, $"{item.nome}.tar")}");
             }
 
             Console.WriteLine("Programa finalizado");
