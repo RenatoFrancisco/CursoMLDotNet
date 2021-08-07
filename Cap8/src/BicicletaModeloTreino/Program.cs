@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.ML;
 using BicicletaDemandaTreino.Classes;
+using Microsoft.ML.Data;
 
 namespace BicicletaModeloTreino
 {
@@ -27,6 +28,22 @@ namespace BicicletaModeloTreino
             _mlContext = new MLContext(seed: 34);
             var treinoDataView = _mlContext.Data.LoadFromTextFile<BikeHoraInstancia>(_dadosTreinoPath, separatorChar: ',', hasHeader: true);
             var testeDataView = _mlContext.Data.LoadFromTextFile<BikeHoraInstancia>(_dadosTestePath, separatorChar: ',', hasHeader: true);
+
+            var pipelineProcessamento = _mlContext.Transforms.Concatenate(
+                DefaultColumnNames.Features,
+                nameof(BikeHoraInstancia.Season),
+                nameof(BikeHoraInstancia.Year),
+                nameof(BikeHoraInstancia.Month),
+                nameof(BikeHoraInstancia.Hour),
+                nameof(BikeHoraInstancia.Holiday),
+                nameof(BikeHoraInstancia.Weekday),
+                nameof(BikeHoraInstancia.WorkingDay),
+                nameof(BikeHoraInstancia.Weather),
+                nameof(BikeHoraInstancia.Temperature),
+                nameof(BikeHoraInstancia.NormalizedTemperature),
+                nameof(BikeHoraInstancia.Humidity),
+                nameof(BikeHoraInstancia.Windspeed)
+            ).AppendCacheCheckpoint(_mlContext);
         }
     }
 }
