@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BicicletaDemandaTreino.Classes
+namespace Bicicleta_Demanda_Treino.Classes
 {
     public class BikeHoraPredicao
     {

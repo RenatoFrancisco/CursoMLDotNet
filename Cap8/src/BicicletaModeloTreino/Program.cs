@@ -58,10 +58,16 @@ namespace BicicletaModeloTreino
                 var modeloTreinado = pipelineProcessamento.Fit(treinoDataView);
                 
                 var predicoes = modeloTreinado.Transform(testeDataView);
-                var metricas = _mlContext.Regression.Evaluate(
-                    data: predicoes, 
-                    label: DefaultColumnNames.Label,
-                    score: DefaultColumnNames.Score);
+                var metricas =
+                    _mlContext.Regression.Evaluate(data: predicoes, label: DefaultColumnNames.Label, score: DefaultColumnNames.Score);
+
+                Console.WriteLine("");
+                Console.WriteLine("---------------------");
+                Console.WriteLine($"Métricas do algoritmo: {item.nome}");
+                Console.WriteLine($"L1: {metricas.L1}"); // Absolute Loss
+                Console.WriteLine($"L2: {metricas.L2}"); // Squared Loss
+                Console.WriteLine($"RMS: {metricas.Rms}");
+                Console.WriteLine($"R2: {metricas.RSquared}");
 
                 using var fs = new FileStream(
                     Path.Combine(modelosPath, $"{item.nome}.tar"),
