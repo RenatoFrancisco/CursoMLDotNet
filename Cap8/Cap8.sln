@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BicicletaModeloTreino", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BicicletaModeloPredicao", "src\BicicletaModeloPredicao\BicicletaModeloPredicao.csproj", "{A08CDC76-98F1-4035-8895-BF376DE90592}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BicicletaModeloPredicaoApi", "src\BicicletaModeloPredicaoApi\BicicletaModeloPredicaoApi.csproj", "{C1327182-13F9-4327-8A12-47E2B53FA809}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,9 +48,22 @@ Global
 		{A08CDC76-98F1-4035-8895-BF376DE90592}.Release|x64.Build.0 = Release|Any CPU
 		{A08CDC76-98F1-4035-8895-BF376DE90592}.Release|x86.ActiveCfg = Release|Any CPU
 		{A08CDC76-98F1-4035-8895-BF376DE90592}.Release|x86.Build.0 = Release|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Debug|x64.Build.0 = Debug|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Debug|x86.Build.0 = Debug|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Release|x64.ActiveCfg = Release|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Release|x64.Build.0 = Release|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Release|x86.ActiveCfg = Release|Any CPU
+		{C1327182-13F9-4327-8A12-47E2B53FA809}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7AB5A49E-D7B3-46F4-8B1E-6BA1EE7546E6} = {881A1293-EDB8-4610-A6AC-A09D44883E5F}
 		{A08CDC76-98F1-4035-8895-BF376DE90592} = {881A1293-EDB8-4610-A6AC-A09D44883E5F}
+		{C1327182-13F9-4327-8A12-47E2B53FA809} = {881A1293-EDB8-4610-A6AC-A09D44883E5F}
 	EndGlobalSection
 EndGlobal
