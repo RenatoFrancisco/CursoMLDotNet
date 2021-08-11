@@ -4,6 +4,7 @@ using System.IO;
 using Microsoft.ML.Data;
 using Microsoft.ML;
 using BicicletaModeloPredicao.Classes;
+using BicicletaDemandaTreino.Classes;
 
 namespace BicicletaModeloPredicao
 {
@@ -24,7 +25,7 @@ namespace BicicletaModeloPredicao
 
             foreach (var algoritmo in _nomesAlgoritmos)
             {
-                var modelFilePath = Path.Combine(_modelDirectoryPath, algoritmo, ".tar");
+                var modelFilePath = Path.Combine(_modelDirectoryPath, $"{algoritmo}.tar");
                 if (!File.Exists(modelFilePath))
                 {
                     Console.WriteLine($"Modelo não encontrado: {modelFilePath}");
@@ -38,10 +39,20 @@ namespace BicicletaModeloPredicao
                     FileAccess.Read, 
                     FileShare.Read);
 
+                _mlContext = new MLContext();
                 var trainedModel = _mlContext.Model.Load(fs);
+                var predictionEngine = trainedModel.CreatePredictionEngine<BikeHoraInstancia, BikeHoraPredicao>(_mlContext);
+
+                var i = 0;
+                foreach (var exemplo in exemplos)
+                {
+                    var prediction = predictionEngine.Predict(exemplo);
+                    Console.WriteLine($"{algoritmo} exemplo {i++} Demanda real {exemplo.Count} Demanda prevista {prediction.PredictedCount}");
+                }
+
+                Console.WriteLine();
             }
 
-            _mlContext = new MLContext(seed: 34);
         }
     }
 }
