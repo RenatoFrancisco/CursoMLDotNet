@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using BicicletaDemandaTreino.Classes;
+using BicicletaModeloTreino.Classes;
 
 namespace BicicletaModeloPredicao.Classes
 {

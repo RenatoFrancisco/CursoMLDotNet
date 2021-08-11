@@ -1,6 +1,6 @@
 ﻿using Microsoft.ML.Data;
 
-namespace BicicletaDemandaTreino.Classes
+namespace BicicletaModeloTreino.Classes
 {
     public class BikeHoraInstancia
     {

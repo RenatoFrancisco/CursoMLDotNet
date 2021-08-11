@@ -4,7 +4,7 @@ using System.IO;
 using Microsoft.ML.Data;
 using Microsoft.ML;
 using BicicletaModeloPredicao.Classes;
-using BicicletaDemandaTreino.Classes;
+using BicicletaModeloTreino.Classes;
 
 namespace BicicletaModeloPredicao
 {

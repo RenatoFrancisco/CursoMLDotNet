@@ -13,4 +13,10 @@
     <ProjectReference Include="..\BicicletaModeloTreino\BicicletaModeloTreino.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Modelos\FastTree.tar">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

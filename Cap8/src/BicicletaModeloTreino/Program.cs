@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Microsoft.ML;
-using BicicletaDemandaTreino.Classes;
+using BicicletaModeloTreino.Classes;
 using Microsoft.ML.Data;
 
 namespace BicicletaModeloTreino
