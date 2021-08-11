@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{881A1293-EDB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BicicletaModeloTreino", "src\BicicletaModeloTreino\BicicletaModeloTreino.csproj", "{7AB5A49E-D7B3-46F4-8B1E-6BA1EE7546E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BicicletaModeloPredicao", "src\BicicletaModeloPredicao\BicicletaModeloPredicao.csproj", "{A08CDC76-98F1-4035-8895-BF376DE90592}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +34,21 @@ Global
 		{7AB5A49E-D7B3-46F4-8B1E-6BA1EE7546E6}.Release|x64.Build.0 = Release|Any CPU
 		{7AB5A49E-D7B3-46F4-8B1E-6BA1EE7546E6}.Release|x86.ActiveCfg = Release|Any CPU
 		{7AB5A49E-D7B3-46F4-8B1E-6BA1EE7546E6}.Release|x86.Build.0 = Release|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Debug|x64.Build.0 = Debug|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Debug|x86.Build.0 = Debug|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Release|x64.ActiveCfg = Release|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Release|x64.Build.0 = Release|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Release|x86.ActiveCfg = Release|Any CPU
+		{A08CDC76-98F1-4035-8895-BF376DE90592}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7AB5A49E-D7B3-46F4-8B1E-6BA1EE7546E6} = {881A1293-EDB8-4610-A6AC-A09D44883E5F}
+		{A08CDC76-98F1-4035-8895-BF376DE90592} = {881A1293-EDB8-4610-A6AC-A09D44883E5F}
 	EndGlobalSection
 EndGlobal
