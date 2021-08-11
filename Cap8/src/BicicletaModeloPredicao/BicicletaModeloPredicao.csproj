@@ -20,4 +20,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BicicletaModeloTreino\BicicletaModeloTreino.csproj" />
+  </ItemGroup>
 </Project>
