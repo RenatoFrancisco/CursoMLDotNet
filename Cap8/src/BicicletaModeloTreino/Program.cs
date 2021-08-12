@@ -55,7 +55,7 @@ namespace BicicletaModeloTreino
             foreach (var item in algoritmosRegressao)
             {
                 var pipelineTreinamento = pipelineProcessamento.Append(item.algoritmo);
-                var modeloTreinado = pipelineProcessamento.Fit(treinoDataView);
+                var modeloTreinado = pipelineTreinamento.Fit(treinoDataView);
                 
                 var predicoes = modeloTreinado.Transform(testeDataView);
                 var metricas =

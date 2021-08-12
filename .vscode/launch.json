@@ -10,9 +10,9 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Cap7/src/TreinaModeloIris/bin/Debug/net5.0/TreinaModeloIris.dll",
+            "program": "${workspaceFolder}/Cap7/src/PredicaoIris/bin/Debug/net5.0/PredicaoIris.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Cap7/src/TreinaModeloIris",
+            "cwd": "${workspaceFolder}/Cap7/src/PredicaoIris",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false
