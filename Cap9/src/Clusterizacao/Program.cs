@@ -50,6 +50,8 @@ namespace Clusterizacao
                     nameof(IrisData.PetalLength),
                     nameof(IrisData.PetalWidth));
 
+            ITransformer trainerModel3Clusters = default;
+
             for (var i = 2; i <= 10; i++)
             {
                 // Treinamento do modelo
@@ -60,6 +62,8 @@ namespace Clusterizacao
 
                 var trainedModel =  pipelineTreinamento.Fit(dadosTreinoTeste.TrainSet);
 
+                if (i == 3) trainerModel3Clusters = trainedModel;
+
                 // Avaliação do modelo
                 var predictions = trainedModel.Transform(dadosTreinoTeste.TrainSet);
                 var metrics = 
@@ -67,6 +71,44 @@ namespace Clusterizacao
 
                 Console.WriteLine($"{metrics.AvgMinScore} para {i} clusters");
             }
+
+            var predEngine = trainerModel3Clusters.CreatePredictionEngine<IrisData, IrisPrediction>(_mlContext);
+
+            // Iris setosa:     5.0 3.6 1.4 0.2
+            // Iris virginica:  5.7	2.6	3.5	1.0
+            // Iris versicolor: 6.7	3.0	5.2	2.3
+
+            var exemplo1 = new IrisData()
+            {
+                // Iris-setosa
+                SepalLength = 5.0f,
+                SepalWidth = 3.6f,
+                PetalLength = 1.4f,
+                PetalWidth = 0.2f,
+            };
+
+            var exemplo2 = new IrisData()
+            {
+                // Iris-virginica
+                SepalLength = 5.7f,
+                SepalWidth = 2.6f,
+                PetalLength = 3.5f,
+                PetalWidth = 1.0f,
+            };
+
+            var exemplo3 = new IrisData()
+            {
+                // Iris-versicolor
+                SepalLength = 6.7f,
+                SepalWidth = 3.0f,
+                PetalLength = 5.2f,
+                PetalWidth = 2.3f,
+            };
+
+            var resultado1 = predEngine.Predict(exemplo1);
+            Console.WriteLine($"{resultado1.ClusterId} para uma instância de iris-setosa");
+            Console.WriteLine($"{predEngine.Predict(exemplo2).ClusterId} para uma instância iris-virginica");
+            Console.WriteLine($"{predEngine.Predict(exemplo3).ClusterId} para uma instância iris-versicolor");
         }
     }
 }
