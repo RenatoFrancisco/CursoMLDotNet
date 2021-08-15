@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Microsoft.ML;
 using Microsoft.ML.Data;
-
+using Clusterizacao.Classes;
 
 namespace Clusterizacao
 {
@@ -24,6 +24,20 @@ namespace Clusterizacao
             }
 
             _mlContext = new MLContext(seed: 1234);
+
+            var colunas = new[]
+            {
+                new TextLoader.Column(DefaultColumnNames.Label, DataKind.Single, 0),
+                new TextLoader.Column(nameof(IrisData.SepalLength), DataKind.Single, 1),
+                new TextLoader.Column(nameof(IrisData.SepalWidth), DataKind.Single, 2),
+                new TextLoader.Column(nameof(IrisData.PetalLength), DataKind.Single, 3),
+                new TextLoader.Column(nameof(IrisData.PetalLength), DataKind.Single, 4),
+            };
+
+            // Carga do arquivo
+            var dataViewDados = 
+                _mlContext.Data.LoadFromTextFile(_dadosPath, columns: colunas, separatorChar: '\t', hasHeader: true);
+
         }
     }
 }
