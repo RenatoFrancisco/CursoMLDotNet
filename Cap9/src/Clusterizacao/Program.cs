@@ -112,18 +112,52 @@ namespace Clusterizacao
             Console.WriteLine();
 
             var dadosTeste = dadosTreinoTeste.TestSet.Preview(20);
+            var nTentativas = 0;
+            var nAcertos = 0;
             var contador = 0;
+
             foreach (var linha in dadosTeste.RowView)
             {
                 contador++;
+
+                var amostra = new IrisData();
                 var str = string.Empty;
                 var colecaoColunas = linha.Values;
 
                 foreach (var coluna in colecaoColunas)
+                {
                     str += $"{contador} - {coluna.Key} => {coluna.Value} | ";
+
+                    if (coluna.Key.Equals("Label"))
+                        amostra.Label = (float) coluna.Value;
+                    else if (coluna.Key.Equals("SepalLength"))
+                        amostra.SepalLength = (float)coluna.Value;
+                    else if (coluna.Key.Equals("SepalWidth"))
+                        amostra.SepalWidth = (float)coluna.Value;
+                    else if (coluna.Key.Equals("PetalLength"))
+                        amostra.PetalLength = (float)coluna.Value;
+                    else if (coluna.Key.Equals("PetalWidth"))
+                        amostra.PetalWidth = (float)coluna.Value;
+                }
+
+                 var resultado = predEngine.Predict(amostra);
+
+                nTentativas++;
+                if (amostra.Label == 0 && resultado.ClusterId == 2)
+                    nAcertos++;
+                if (amostra.Label == 1 && resultado.ClusterId == 1)
+                    nAcertos++;
+                if (amostra.Label == 2 && resultado.ClusterId == 3)
+                    nAcertos++;
 
                 Console.WriteLine(str);
             }
+
+            Console.WriteLine();
+            Console.WriteLine($"Tentativas: {nTentativas}");
+            Console.WriteLine($"Acertos: {nAcertos}");
+            Console.WriteLine($"Erros: {(nTentativas - nAcertos)}");
+            Console.WriteLine($"Acurácia: {(float) nAcertos / (float) nTentativas}");
         }
     }
 }
