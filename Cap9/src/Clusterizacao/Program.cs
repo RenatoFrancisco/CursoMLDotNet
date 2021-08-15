@@ -109,6 +109,21 @@ namespace Clusterizacao
             Console.WriteLine($"{resultado1.ClusterId} para uma instância de iris-setosa");
             Console.WriteLine($"{predEngine.Predict(exemplo2).ClusterId} para uma instância iris-virginica");
             Console.WriteLine($"{predEngine.Predict(exemplo3).ClusterId} para uma instância iris-versicolor");
+            Console.WriteLine();
+
+            var dadosTeste = dadosTreinoTeste.TestSet.Preview(20);
+            var contador = 0;
+            foreach (var linha in dadosTeste.RowView)
+            {
+                contador++;
+                var str = string.Empty;
+                var colecaoColunas = linha.Values;
+
+                foreach (var coluna in colecaoColunas)
+                    str += $"{contador} - {coluna.Key} => {coluna.Value} | ";
+
+                Console.WriteLine(str);
+            }
         }
     }
 }
