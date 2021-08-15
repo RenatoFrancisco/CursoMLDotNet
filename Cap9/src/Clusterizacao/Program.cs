@@ -50,12 +50,23 @@ namespace Clusterizacao
                     nameof(IrisData.PetalLength),
                     nameof(IrisData.PetalWidth));
 
-            var trainer = 
-                _mlContext.Clustering.Trainers.KMeans(featureColumnName: DefaultColumnNames.Features, clustersCount: 3);
+            for (var i = 2; i <= 10; i++)
+            {
+                // Treinamento do modelo
+                var trainer = 
+                    _mlContext.Clustering.Trainers.KMeans(featureColumnName: DefaultColumnNames.Features, clustersCount: i);
 
-            var pipelineTreinamento = pipelineProcessamento.Append(trainer);
+                var pipelineTreinamento = pipelineProcessamento.Append(trainer);
 
-            var trainedModel =  pipelineTreinamento.Fit(dadosTreinoTeste.TrainSet);
+                var trainedModel =  pipelineTreinamento.Fit(dadosTreinoTeste.TrainSet);
+
+                // Avaliação do modelo
+                var predictions = trainedModel.Transform(dadosTreinoTeste.TrainSet);
+                var metrics = 
+                    _mlContext.Clustering.Evaluate(predictions, score: DefaultColumnNames.Score, features: DefaultColumnNames.Features);
+
+                Console.WriteLine($"{metrics.AvgMinScore} para {i} clusters");
+            }
         }
     }
 }
