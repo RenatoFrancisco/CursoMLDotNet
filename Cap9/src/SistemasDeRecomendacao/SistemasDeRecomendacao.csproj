@@ -11,19 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Datasets\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="Datasets\recommendation-movies.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Datasets\recommendation-ratings-test.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Datasets\recommendation-ratings-train.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>
