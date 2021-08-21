@@ -33,9 +33,14 @@ namespace SistemasDeRecomendacao
 
             _mlContext = new MLContext();
 
+            // Carga dos Dados
             var dataViewTreino =
                  _mlContext.Data.LoadFromTextFile<FilmeAvaliacao>(_dadosTreinoPath, hasHeader: true, separatorChar: ',');
 
+            // Transformando os dados para ser entregue ao algoritmo de fatorização de matrizes
+            var pipelineProcessamento = 
+                _mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "userId", inputColumnName: nameof(FilmeAvaliacao.userId))
+                .Append(_mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "movieId", inputColumnName: nameof(FilmeAvaliacao.movieId)));
         }
     }
 }
