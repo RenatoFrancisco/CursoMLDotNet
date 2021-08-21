@@ -41,6 +41,17 @@ namespace SistemasDeRecomendacao
             var pipelineProcessamento = 
                 _mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "userId", inputColumnName: nameof(FilmeAvaliacao.userId))
                 .Append(_mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: "movieId", inputColumnName: nameof(FilmeAvaliacao.movieId)));
+
+            var options = new MatrixFactorizationTrainer.Options();
+            options.MatrixRowIndexColumnName = "userId";
+            options.MatrixColumnIndexColumnName = "movieId";
+            options.LabelColumnName = DefaultColumnNames.Label;
+            options.NumberOfIterations = 100;
+
+            var pipelineTreinamento = 
+                pipelineProcessamento.Append(_mlContext.Recommendation().Trainers.MatrixFactorization(options));
+
+            var model = pipelineTreinamento.Fit(dataViewTreino);
         }
     }
 }
