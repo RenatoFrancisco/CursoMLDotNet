@@ -52,6 +52,14 @@ namespace SistemasDeRecomendacao
                 pipelineProcessamento.Append(_mlContext.Recommendation().Trainers.MatrixFactorization(options));
 
             var model = pipelineTreinamento.Fit(dataViewTreino);
+
+            // Avaliação de Modelo
+            var dataViewTeste = 
+                _mlContext.Data.LoadFromTextFile<FilmeAvaliacao>(_dadosTestePath, hasHeader: true, separatorChar: ',');
+
+            var predicoes = model.Transform(dataViewTeste);
+            var metricas = _mlContext.Regression.Evaluate(predicoes, label: DefaultColumnNames.Label, score: DefaultColumnNames.Score);
+            Console.WriteLine($"RMS do Modelo: {metricas.Rms}");
         }
     }
 }
