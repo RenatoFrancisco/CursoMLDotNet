@@ -60,6 +60,35 @@ namespace SistemasDeRecomendacao
             var predicoes = model.Transform(dataViewTeste);
             var metricas = _mlContext.Regression.Evaluate(predicoes, label: DefaultColumnNames.Label, score: DefaultColumnNames.Score);
             Console.WriteLine($"RMS do Modelo: {metricas.Rms}");
+
+            // Obtendo predições
+            var predEngine = model.CreatePredictionEngine<FilmeAvaliacao, FilmeAvaliacaoPredicao>(_mlContext);
+
+            var linhas = File.ReadAllLines(_dadosTestePath);
+            foreach (var linha in linhas.Skip(1))
+            {
+                var campos = linha.Split(',');
+
+                var amostra = new FilmeAvaliacao
+                {
+                    userId = float.Parse(campos[0]),
+                    movieId = float.Parse(campos[1]),
+                    Label = float.Parse(campos[2].Replace('.', ','))
+                };
+
+                var predicao = predEngine.Predict(amostra);
+
+                var resultadoFinal = predicao.Score;
+
+                if (resultadoFinal < 0)
+                    resultadoFinal = 0;
+                else if (resultadoFinal > 5)
+                    resultadoFinal = 5;
+                else resultadoFinal = (float) Math.Round(resultadoFinal, 1);
+
+                var resultado = $"Usuário {amostra.userId} avaliou filme {amostra.movieId} como {amostra.Label} e o modelo previou como {resultadoFinal}";
+                Console.WriteLine(resultado);
+            }
         }
     }
 }
