@@ -38,7 +38,7 @@ namespace TreinaModeloIris
                 nameof(IrisData.PetalLength)
             )
             .Append(mlContext.Transforms.Conversion.MapValueToKey(outputColumnName: DefaultColumnNames.Label, inputColumnName: nameof(IrisData.Label)))
-            .AppendCacheCheckpoint(mlContext);
+            .AppendCacheCheckpoint(mlContext); // Usar somente com datasets pequenos
 
             // Terceira etapa: Treinamento de um modelo de Machine Learning
             var trainer = mlContext.MulticlassClassification
